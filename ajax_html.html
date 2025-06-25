@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta AJAX con Input</title>
+    <script>
+        function buscar() {
+            var consulta = document.getElementById('inputConsulta').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'servidor.php?consulta=' + encodeURIComponent(consulta), true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('resultado').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>Consulta AJAX</h2>
+    <input type="text" id="inputConsulta" onkeyup="buscar()" placeholder="Escribe tu consulta...">
+    <div id="resultado"></div>
+</body>
+</html>
